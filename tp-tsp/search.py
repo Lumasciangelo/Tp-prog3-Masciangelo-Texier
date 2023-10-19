@@ -18,7 +18,6 @@ No viene implementado, se debe completar.
 
 from __future__ import annotations
 from problem import OptProblem
-from node import Node
 from random import choice
 from time import time
 
@@ -57,36 +56,38 @@ class HillClimbing(LocalSearch):
         # Inicio del reloj
         start = time()
 
-        # Crear el nodo inicial
-        actual = Node(problem.init, problem.obj_val(problem.init))
+        # Arrancamos del estado inicial
+        actual = problem.init
+        value = problem.obj_val(problem.init)
 
         while True:
 
             # Determinar las acciones que se pueden aplicar
             # y las diferencias en valor objetivo que resultan
-            diff = problem.val_diff(actual.state)
+            diff = problem.val_diff(actual)
 
-            # Buscar las acciones que generan el  mayor incremento de valor obj
+            # Buscar las acciones que generan el mayor incremento de valor obj
             max_acts = [act for act, val in diff.items() if val ==
                         max(diff.values())]
 
             # Elegir una accion aleatoria
             act = choice(max_acts)
 
-            # Retornar si estamos en un optimo local
+            # Retornar si estamos en un optimo local 
+            # (diferencia de valor objetivo no positiva)
             if diff[act] <= 0:
 
-                self.tour = actual.state
-                self.value = actual.value
+                self.tour = actual
+                self.value = value
                 end = time()
                 self.time = end-start
                 return
 
-            # Sino, moverse a un nodo con el estado sucesor
+            # Sino, nos movemos al sucesor
             else:
 
-                actual = Node(problem.result(actual.state, act),
-                              actual.value + diff[act])
+                actual = problem.result(actual, act)
+                value = value + diff[act]
                 self.niters += 1
 
 
