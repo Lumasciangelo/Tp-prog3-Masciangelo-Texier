@@ -94,7 +94,7 @@ class HillClimbing(LocalSearch):
 class HillClimbingReset(LocalSearch):
     """Algoritmo de ascension de colinas con reinicio aleatorio."""
 
-    def solve(self, problem: OptProblem):
+    def solve(self, problem: TSP):
         """Resuelve un problema de optimizacion con ascension de colinas.
 
         Argumentos:
@@ -128,22 +128,22 @@ class HillClimbingReset(LocalSearch):
 
             # Retornar si estamos en un optimo local 
             # (diferencia de valor objetivo no positiva)
+        
             if diff[act] <= 0:
+               n-= 1
                #primero nos fijamos si es mayor al self.tour que tengo guardado
                if self.value < value:
                     self.tour = actual
                     self.value = value
+               #si no me quedo con lo que tenia
+               #ahora reseteo si n es mayor a 0
+               if n > 0:
+                    actual = problem.random_reset()
+                    value = problem.obj_val(actual)
+                     
+               else: 
                     end = time()
                     self.time = end-start
-                    return
-               else: 
-                pass
-                n -= 1
-               #si no me quedo con lo que tenia
-            #ahora reseteo si n es mayor a 0
-                if n > 0:
-                    TSP.random_reset(self)
-                else: 
                     return
 
             # Sino, nos movemos al sucesor
@@ -156,5 +156,59 @@ class HillClimbingReset(LocalSearch):
 
 class Tabu(LocalSearch):
     """Algoritmo de busqueda tabu."""
+    def solve(self, problem: OptProblem):
 
-    # COMPLETAR
+        # Inicio del reloj
+        start = time()
+
+        # Arrancamos del estado inicial
+        actual = problem.init
+        state_mejor = actual
+        value_mejor = problem.obj_val(problem.init)
+        lista_tabu = []
+    
+        mejor_estado = actual
+
+        while self.niters < 100:
+
+            # Determinar las acciones que se pueden aplicar
+            # y las diferencias en valor objetivo que resultan
+            diff = problem.val_diff(actual)
+
+            no_tabues = {}
+
+            for i,j in diff.items():
+                if i not in lista_tabu:
+                    no_tabues[i] = j
+
+            # Buscar las acciones que generan el mayor incremento de valor obj
+            max_acts = [act for act, val in no_tabues.items() if val ==
+                        max(no_tabues.values())]
+
+            # Elegir una accion aleatoria
+            act = choice(max_acts)
+
+            # Nos movemos al sucesor
+            actual = problem.result(actual, act)
+            value = problem.obj_val(actual)
+            
+
+            if len(lista_tabu) > 10:
+                lista_tabu.pop(0)
+            
+            lista_tabu.append(act)
+            self.niters += 1
+            if value_mejor < value:
+                state_mejor = actual
+                value_mejor = value
+            
+
+            
+
+            self.tour = state_mejor
+            self.value = value_mejor
+            end = time()
+            self.time = end-start
+            return state_mejor
+
+        
