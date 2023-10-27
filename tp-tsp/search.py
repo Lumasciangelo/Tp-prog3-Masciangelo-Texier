@@ -166,10 +166,9 @@ class Tabu(LocalSearch):
         state_mejor = actual
         value_mejor = problem.obj_val(problem.init)
         lista_tabu = []
-    
-        mejor_estado = actual
 
-        while self.niters < 100:
+        # El criteriode parada que elegimos es la cantidad de iteriaciones
+        while self.niters < 700:
 
             # Determinar las acciones que se pueden aplicar
             # y las diferencias en valor objetivo que resultan
@@ -192,8 +191,8 @@ class Tabu(LocalSearch):
             actual = problem.result(actual, act)
             value = problem.obj_val(actual)
             
-
-            if len(lista_tabu) > 10:
+            # La cantidad de valores lo decidimos comparando diversos numeros
+            if len(lista_tabu) > 40:
                 lista_tabu.pop(0)
             
             lista_tabu.append(act)
@@ -202,13 +201,9 @@ class Tabu(LocalSearch):
                 state_mejor = actual
                 value_mejor = value
             
+        self.tour = state_mejor
+        self.value = value_mejor
+        end = time()
+        self.time = end-start
+        return state_mejor
 
-            
-
-            self.tour = state_mejor
-            self.value = value_mejor
-            end = time()
-            self.time = end-start
-            return state_mejor
-
-        
