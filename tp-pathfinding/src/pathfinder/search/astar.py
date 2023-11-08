@@ -2,6 +2,7 @@ from ..models.grid import Grid
 from ..models.frontier import PriorityQueueFrontier
 from ..models.solution import NoSolution, Solution
 from ..models.node import Node
+import math
 
 def distancia_linea_recta(punto1, punto2):
     x1, y1 = punto1
@@ -32,7 +33,7 @@ class AStarSearch:
         node = Node("", grid.start, 0)
 
         frontier = PriorityQueueFrontier()
-        frontier.add(node, d_linea_recta(grid.start, grid.end))
+        frontier.add(node, distancia_manhattan(grid.start, grid.end))
 
         # Initialize the explored dictionary to be empty
         explored = {} 
@@ -61,6 +62,6 @@ class AStarSearch:
                     
                     explored[new_state] = new_cost
 
-                    frontier.add(new_node, new_cost + distancia_linea_recta(new_state, grid.end))
+                    frontier.add(new_node, new_cost + distancia_manhattan(new_state, grid.end))
 
         return NoSolution(explored)

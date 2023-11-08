@@ -2,6 +2,7 @@ from ..models.grid import Grid
 from ..models.frontier import PriorityQueueFrontier
 from ..models.solution import NoSolution, Solution
 from ..models.node import Node
+import math
 
 def distancia_linea_recta(punto1, punto2):
     x1, y1 = punto1
