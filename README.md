@@ -21,24 +21,24 @@ visualizando el proceso y comparando resultados.
 
 ### Algoritmos implementados
 
--   **BFS (Breadth-First Search)**\
--   **DFS (Depth-First Search)**\
--   **UCS (Uniform Cost Search)**\
--   **GBFS (Greedy Best-First Search)**\
--   **A**\*\
+-   **BFS (Breadth-First Search)**
+-   **DFS (Depth-First Search)**
+-   **UCS (Uniform Cost Search)**
+-   **GBFS (Greedy Best-First Search)**
+-   **A**\*
 -   **Go Right** (algoritmo base provisto)
 
 ### Archivos principales
 
 -   `bfs.py`, `dfs.py`, `ucs.py`, `gbfs.py`, `astar.py` →
-    Implementaciones de los algoritmos.\
--   `goright.py` → Algoritmo de ejemplo provisto.\
+    Implementaciones de los algoritmos.
+-   `goright.py` → Algoritmo de ejemplo provisto.
 -   `enunciado.pdf` → Consigna completa y explicación de las clases de
     apoyo.
 
 ### Clases de apoyo (provistas por la cátedra)
 
--   **Node**, **Grid**, **Frontier** (Pila, Cola, Cola de Prioridad).\
+-   **Node**, **Grid**, **Frontier** (Pila, Cola, Cola de Prioridad).
 -   **Solution / NoSolution** para representar el resultado.
 
 ### Ejecución
@@ -50,7 +50,7 @@ visualizando el proceso y comparando resultados.
     pip install -r requirements.txt
     ```
 
-2.  Copiar los archivos de este TP en `src/pathfinder/search/`.\
+2.  Copiar los archivos de este TP en `src/pathfinder/search/`.
 
 3.  Ejecutar:
 
@@ -74,9 +74,9 @@ resolver el problema del viajante de comercio (TSP).
 
 1.  **Hill Climbing**
     -   Búsqueda de mejoras locales, moviéndose siempre hacia el sucesor
-        con mejor valor.\
+        con mejor valor.
 2.  **Random Restart Hill Climbing**
-    -   Variante con reinicios aleatorios para evitar óptimos locales.\
+    -   Variante con reinicios aleatorios para evitar óptimos locales.
 3.  **Tabu Search**
     -   Utiliza una lista tabú para recordar movimientos recientes y
         explorar más ampliamente el espacio de soluciones.
@@ -85,18 +85,18 @@ resolver el problema del viajante de comercio (TSP).
 
 -   `search.py` → Contiene la clase base `LocalSearch` y las
     implementaciones de:
-    -   `HillClimbing` (provisto)\
-    -   `HillClimbingReset` (implementado por nosotras)\
-    -   `Tabu` (implementado por nosotras)\
+    -   `HillClimbing` (provisto)
+    -   `HillClimbingReset` (implementado por nosotras)
+    -   `Tabu` (implementado por nosotras)
 -   `enunciado.pdf` → Consigna completa, explicación del problema y
     clases de apoyo.
 
 ### Clases y conceptos clave
 
 -   **OptProblem / TSP**: Representan el problema, estado inicial,
-    función objetivo, acciones (2-opt).\
+    función objetivo, acciones (2-opt).
 -   **LocalSearch**: Clase base con atributos como `tour`, `value`,
-    `niters`, `time`.\
+    `niters`, `time`.
 -   **Acciones 2-opt**: Intercambio de aristas para generar vecinos.
 
 ### Ejecución
@@ -109,7 +109,7 @@ resolver el problema del viajante de comercio (TSP).
     ```
 
 2.  Copiar `search.py` y demás archivos de este TP en la carpeta
-    correspondiente.\
+    correspondiente.
 
 3.  Ejecutar el programa principal sobre una instancia TSP:
 
@@ -123,7 +123,7 @@ resolver el problema del viajante de comercio (TSP).
 ### Resultados
 
 -   Comparación de soluciones encontradas, tiempos de ejecución e
-    iteraciones para cada algoritmo.\
+    iteraciones para cada algoritmo.
 -   Observación del impacto de los reinicios aleatorios y la lista tabú
     en la calidad de las soluciones.
 
@@ -131,16 +131,16 @@ resolver el problema del viajante de comercio (TSP).
 
 ## 🛠 Tecnologías utilizadas
 
--   **Python 3.10+**\
--   **Programación orientada a objetos**\
--   **Estructuras de datos personalizadas**\
+-   **Python 3.10+**
+-   **Programación orientada a objetos**
+-   **Estructuras de datos personalizadas**
 -   **Visualización gráfica provista por la cátedra**
 
 ------------------------------------------------------------------------
 
 ## ✨ Autoras
 
-**Julieta Texier**\
-**Lucía Masciángelo**\
-*Tecnicatura Universitaria en Inteligencia Artificial - FCEIA - UNR*\
+**Julieta Texier**
+**Lucía Masciángelo**
+*Tecnicatura Universitaria en Inteligencia Artificial - FCEIA - UNR*
 *Segundo cuatrimestre 2023*
