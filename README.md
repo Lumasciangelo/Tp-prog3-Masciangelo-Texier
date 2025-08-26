@@ -141,6 +141,7 @@ resolver el problema del viajante de comercio (TSP).
 ## ✨ Autoras
 
 **Julieta Texier**
+
 **Lucía Masciángelo**
+
 *Tecnicatura Universitaria en Inteligencia Artificial - FCEIA - UNR*
-*Segundo cuatrimestre 2023*
